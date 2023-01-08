@@ -1,15 +1,32 @@
+"use client"
+import Router from "next/router";
 import React, { createContext, useContext, useState } from "react";
 
 export const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [state, setState] = useState("intial");
+  const [userName, setUserName] = useState('');
+  const [roomName, setRoomName] = useState('');
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    Router.push(`/room/${roomName}`);
+  };
+
+  const handleCredChange = (userName, roomName) => {
+    setUserName(userName)
+    setRoomName(roomName)
+  }
 
   return (
     <Context.Provider
       value={{
-        state,
-        setState,
+        userName,
+        setUserName,
+        roomName,
+        setRoomName,
+        handleLogin,
+        handleCredChange
       }}
     >
       {children}

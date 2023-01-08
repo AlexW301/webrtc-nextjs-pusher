@@ -1,7 +1,9 @@
+"use client"
 /* eslint-disable @next/next/no-head-element */
 import "../styles/globals.scss";
 import Header from "./Header";
 import Footer from "./Footer";
+import {StateContext} from "../context/StateContext";
 // import { Nunito } from "@next/font/google";
 // const nunito = Nunito();
 
@@ -23,9 +25,11 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image" href="favicon.ico" />
       </head>
       <body>
+        <StateContext>
         <Header />
         <div>{children}</div>
         <Footer />
+        </StateContext>
       </body>
     </html>
   );
